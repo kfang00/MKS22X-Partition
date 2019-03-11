@@ -9,7 +9,37 @@ public class Partition {
  *@return the index of the final position of the pivot element.
  */
 
-  int partition (int [] data, int start, int end){
-
+  public int partition (int[] data, int start, int end){
+    Random ran = new Random();
+    int ranI = (ran % (end - start)) + start;
+    int pivot = data[ranI];
+    int start = 1;
+    int end = data.length - 1;
+    int hold;
+    int pIdx = 0;
+    data[ranI] = data[0];
+    data[0] = pivot;
+    while (start != end) {
+      if (data[start] > pivot) {
+	hold = data[start];
+        data[start] = data[end];
+	data[end] = hold;
+        end = end - 1;
+      }
+      else if (data[start] < pivot) {
+	start += 1;
+      }
+    }
+    if (data[start] <= pivot) {
+      data[0] = data[start];
+      data[start] = pivot;
+      pIdx = start;
+    }
+    else if ((start != 1)) {
+      data[0] = data[start - 1];
+      data[start - 1] = pivot;
+      pIdx = start - 1;
+    }
+    return pIdx;
   }
 }
