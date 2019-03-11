@@ -1,3 +1,6 @@
+import java.util.*; 
+import java.io.*;
+
 public class Partition {
 
 /*Modify the array such that:
@@ -9,9 +12,9 @@ public class Partition {
  *@return the index of the final position of the pivot element.
  */
 
-  public int partition (int[] data, int start, int end){
+  public int partition (int[] data, int s, int e){
     Random ran = new Random();
-    int ranI = (ran % (end - start)) + start;
+    int ranI = (ran.nextInt() % (e - s)) + s;
     int pivot = data[ranI];
     int start = 1;
     int end = data.length - 1;
